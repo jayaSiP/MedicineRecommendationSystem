@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <style>
+      body {
+        margin: 0;
+        font-family: sans-serif;
+        background-image: url("{{ url_for('static', filename='background.jpeg') }}");
+        background-size: cover;
+        background-position: center;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      .contact-container {
+        display: flex;
+        width: 80%;
+        max-width: 1200px;
+        background-color: rgba(68, 106, 113, 0.7);
+        padding: 2rem;
+        border-radius: 10px;
+      }
+
+      .contact-info {
+        flex: 1;
+        padding-right: 2rem;
+      }
+
+      .contact-form {
+        flex: 1;
+        background-color: white;
+        color: black;
+        padding: 2rem;
+        border-radius: 10px;
+      }
+
+      .contact-info h2 {
+        margin-bottom: 1rem;
+      }
+
+      .contact-info p {
+        margin-bottom: 1.5rem;
+      }
+
+      .info-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+
+      .info-item i {
+        margin-right: 1rem;
+        font-size: 1.5rem;
+      }
+
+      .contact-form h3 {
+        margin-bottom: 1.5rem;
+      }
+
+      .contact-form input,
+      .contact-form textarea {
+        width: 100%;
+        padding: 0.5rem;
+        margin-bottom: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+
+      .contact-form button {
+        background-color: #007bff;
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .contact-form button:hover {
+        background-color: teal;
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="contact-container">
+      <div class="contact-info">
+        <h1><b>Contact Us</b></h1>
+        <p>
+          Our dedicated customer support team is available to assist you with
+          any inquiries or issues you may have. Whether it's a technical
+          question, feedback, or a general inquiry, we're just a message away.
+        </p>
+
+        <div class="info-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <div>
+            <strong>Address</strong><br />
+            KIIT University, Odisha, IN
+          </div>
+        </div>
+
+        <div class="info-item">
+          <i class="fas fa-phone"></i>
+          <div>
+            <strong>Phone</strong><br />
+            +91 87899 XXXXX
+          </div>
+        </div>
+
+        <div class="info-item">
+          <i class="fas fa-envelope"></i>
+          <div>
+            <strong>Email</strong><br />
+            MinorProject@gmail.com
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <h3>Send Message</h3>
+        <input type="text" placeholder="Full Name" />
+        <input type="email" placeholder="Email" />
+        <textarea placeholder="Type your Message..." rows="4"></textarea>
+        <button>Send</button>
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

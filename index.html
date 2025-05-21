@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Health Care Center</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background-color: #ffffff;
+        color: #333;
+      }
+
+      .half-colored-heading {
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: bold;
+        background: linear-gradient(to right, black 50%, #50bfa5 50%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-top: 30px;
+        margin-bottom: 30px;
+      }
+
+      .logo {
+        width: 50px;
+        height: 50px;
+        margin-left: 2px;
+      }
+
+      .myimg {
+        width: 50px;
+        height: 50px;
+        border: 2px solid black;
+        border-radius: 25px;
+      }
+
+      button,
+      .toggle-button {
+        background-color: #50bfa5;
+        color: #fff;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        font-weight: bold;
+      }
+
+      button:hover,
+      .toggle-button:hover {
+        background-color: #3a8b91;
+        color: #fff;
+      }
+
+      .result-card {
+        display: none;
+        margin-top: 20px;
+      }
+
+      .result-card.active {
+        display: block;
+      }
+
+      .result-card .card {
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .toggle-button {
+        margin: 5px;
+        width: 150px;
+      }
+
+      #transcription {
+        font-style: italic;
+        color: #28a745;
+        font-size: 1rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <div class="logo">
+          <img
+            class="myimg"
+            src="{{ url_for('static', filename='img.png') }}"
+            alt="Image"
+          />
+        </div>
+        <a class="navbar-brand" href="#">VitaPulse 💓 </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarContent"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/contact">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/developer">Developer</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li>
+          </ul>
+          <form class="d-flex" role="search">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+            />
+            <button class="btn btn-outline-success" type="submit">
+              Search
+            </button>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Half-colored heading -->
+    <h1 class="half-colored-heading">Where Health Meets Vitality</h1>
+
+    <!-- Form -->
+    <div
+      class="container"
+      style="
+        background: black;
+        color: #a2c6eb;
+        border-radius: 15px;
+        padding: 40px;
+      "
+    >
+      <form action="/predict" method="post">
+        <div class="form-group mb-3">
+          <label for="symptoms">Select Symptoms:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="symptoms"
+            name="symptoms"
+            placeholder="Type symptoms such as itching, sleeping, aching etc"
+          />
+        </div>
+        <button
+          type="button"
+          id="startSpeechRecognition"
+          class="btn"
+          style="border-radius: 20px"
+        >
+          Start Speech Recognition
+        </button>
+        <div id="transcription" class="mt-3"></div>
+        <p>{{ message }}</p>
+        <button type="submit" class="btn btn-lg mt-4 w-100">Predict</button>
+      </form>
+    </div>
+
+    <!-- Results -->
+    <h1 class="half-colored-heading">Our AI System Results</h1>
+    <div class="container text-center">
+      <button class="toggle-button" onclick="showCard('diseaseCard')">
+        Disease
+      </button>
+      <button class="toggle-button" onclick="showCard('descriptionCard')">
+        Description
+      </button>
+      <button class="toggle-button" onclick="showCard('precautionCard')">
+        Precaution
+      </button>
+      <button class="toggle-button" onclick="showCard('medicationsCard')">
+        Medications
+      </button>
+      <button class="toggle-button" onclick="showCard('workoutsCard')">
+        Workouts
+      </button>
+      <button class="toggle-button" onclick="showCard('dietsCard')">
+        Diets
+      </button>
+    </div>
+
+    <!-- Cards -->
+    <div class="container result-card" id="diseaseCard">
+      <div class="card p-3">
+        <h5>Predicted Disease</h5>
+        <p>{{ predicted_disease }}</p>
+      </div>
+    </div>
+
+    <div class="container result-card" id="descriptionCard">
+      <div class="card p-3">
+        <h5>Description</h5>
+        <p>{{ dis_des }}</p>
+      </div>
+    </div>
+
+    <div class="container result-card" id="precautionCard">
+      <div class="card p-3">
+        <h5>Precaution</h5>
+        {% if my_precautions %}
+        <ul>
+          {% for i in my_precautions %}
+          <li>{{ i }}</li>
+          {% endfor %}
+        </ul>
+        {% else %}
+        <p>No specific precautions found.</p>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="container result-card" id="medicationsCard">
+      <div class="card p-3">
+        <h5>Medications</h5>
+        <ul>
+          {% for i in medications %}
+          <li>{{ i }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <div class="container result-card" id="workoutsCard">
+      <div class="card p-3">
+        <h5>Workouts</h5>
+        <ul>
+          {% for i in workout %}
+          <li>{{ i }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <div class="container result-card" id="dietsCard">
+      <div class="card p-3">
+        <h5>Diets</h5>
+        <ul>
+          {% for i in diet %}
+          <li>{{ i }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <!-- Script -->
+    <script>
+      function showCard(id) {
+        const cards = document.querySelectorAll(".result-card");
+        cards.forEach((card) => card.classList.remove("active"));
+        document.getElementById(id).classList.add("active");
+        window.scrollTo({
+          top: document.getElementById(id).offsetTop - 100,
+          behavior: "smooth",
+        });
+      }
+
+      document
+        .getElementById("startSpeechRecognition")
+        .addEventListener("click", () => {
+          const recognition = new (window.SpeechRecognition ||
+            window.webkitSpeechRecognition)();
+          recognition.lang = "en-US";
+          recognition.interimResults = false;
+          recognition.maxAlternatives = 1;
+
+          recognition.onstart = () => {
+            document.getElementById("transcription").textContent =
+              "Listening...";
+          };
+
+          recognition.onresult = (event) => {
+            const transcript = event.results[0][0].transcript;
+            document.getElementById("symptoms").value = transcript;
+            document.getElementById(
+              "transcription"
+            ).textContent = `You said: "${transcript}"`;
+          };
+
+          recognition.onerror = (event) => {
+            document.getElementById(
+              "transcription"
+            ).textContent = `Error: ${event.error}`;
+          };
+
+          recognition.start();
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

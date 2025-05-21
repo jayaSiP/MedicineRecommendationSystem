@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>About Developer</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        font-family: sans-serif;
+        background-image: url("background.jpg");
+        background-size: cover;
+        background-position: center;
+        color: white;
+      }
+
+      .navbar-custom {
+        background-color: #100f0f;
+        padding: 1rem 2rem;
+      }
+
+      .navbar-custom .navbar-brand,
+      .navbar-custom .nav-link {
+        color: white;
+      }
+
+      .navbar-custom .nav-link:hover {
+        color: red;
+      }
+
+      .content-section {
+        padding: 4rem 10%;
+      }
+
+      h5,
+      h6 {
+        color: black;
+        font-weight: bold;
+      }
+
+      p {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+        color: #000;
+      }
+
+      .developer-card {
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 1rem;
+        padding: 1rem;
+        transition: transform 0.05s ease-in-out;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .developer-card:hover {
+        transform: scale(1.05);
+      }
+
+      .dev-img {
+        width: 130px;
+        height: 130px;
+        object-fit: cover; /* try contain if you want no crop at all */
+        object-position: top center;
+        border-radius: 50%;
+        border: 3px solid #446a71;
+        background-color: white;
+      }
+
+      .developer-name {
+        margin-top: 1rem;
+        font-weight: bold;
+        color: #000;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom">
+      <a class="navbar-brand" href="#">Vita Pulse</a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="content-section">
+      <h6>About our team: Aspiring Full Stack & ML Engineer</h6>
+
+      <h5 class="text-center mb-5">Meet the Developers</h5>
+      <div class="row justify-content-center gy-4">
+        <div class="col-md-4 col-lg-2 text-center">
+          <div class="developer-card">
+            <img
+              src="{{ url_for('static', filename='aryan.jpeg') }}"
+              alt="Aryan Chauhan"
+              class="img-fluid dev-img"
+            />
+            <div class="developer-name">Aryan Chauhan</div>
+          </div>
+        </div>
+        <div class="col-md-4 col-lg-2 text-center">
+          <div class="developer-card">
+            <img
+              src="{{ url_for('static', filename='abhi.jpeg') }}"
+              alt="Abhi Sinha"
+              class="img-fluid dev-img"
+            />
+            <div class="developer-name">Abhi Sinha</div>
+          </div>
+        </div>
+        <div class="col-md-4 col-lg-2 text-center">
+          <div class="developer-card">
+            <img
+              src="{{ url_for('static', filename='abhayprasad.png') }}"
+              alt="Abhay Prasad"
+              class="img-fluid dev-img"
+            />
+            <div class="developer-name">Abhay Prasad</div>
+          </div>
+        </div>
+        <div class="col-md-4 col-lg-2 text-center">
+          <div class="developer-card">
+            <img
+              src="{{ url_for('static', filename='abhaysingh.png') }}"
+              alt="Abhay Singh"
+              class="img-fluid dev-img"
+            />
+            <div class="developer-name">Abhay Singh</div>
+          </div>
+        </div>
+        <div class="col-md-4 col-lg-2 text-center">
+          <div class="developer-card">
+            <img
+              src="{{ url_for('static', filename='jaya.png') }}"
+              alt="Jaya Singh"
+              class="img-fluid dev-img"
+            />
+            <div class="developer-name">Jaya Singh</div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="my-5" />
+
+      <h5>Our Expertise</h5>
+      <p>
+        With a strong academic background in computer science and a deep
+        fascination for AI and ML, I embarked on a journey that has taken me
+        across the globe, working on diverse and innovative projects. Over the
+        years, I've had the privilege of collaborating on international projects
+        that have pushed the boundaries of what's possible in AI and ML.
+      </p>
+
+      <h5>A Commitment to Excellence</h5>
+      <p>
+        My work is driven by a commitment to excellence and a belief that
+        technology should be accessible and beneficial to everyone. Whether it's
+        developing predictive models, creating intelligent algorithms, or
+        designing user-friendly interfaces, I strive for solutions that are both
+        cutting-edge and user-centric.
+      </p>
+
+      <h5>Passion for Health Tech</h5>
+      <p>
+        The development of Website represents a convergence of my passion for AI
+        and my dedication to improving healthcare accessibility
+      </p>
+    </div>
+  </body>
+</html>
